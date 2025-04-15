@@ -1,8 +1,11 @@
 //#region --------------------------------- Screens ---------------------------------
 
-export 'package:cinemapedia/modules/layout/screens/home.screen.dart';
+export './screens/home.screen.dart';
 
 //#endregion
 
-//#region --------------------------------- Methods ---------------------------------
+//#region --------------------------------- Widgets ---------------------------------
+
+export './widgets/app_bar.widget.dart';
+
 //#endregion

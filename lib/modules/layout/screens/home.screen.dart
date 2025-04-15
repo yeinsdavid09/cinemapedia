@@ -1,3 +1,4 @@
+import 'package:cinemapedia/modules/layout/widgets/app_bar.widget.dart';
 import 'package:cinemapedia/modules/movies/providers/movies.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,13 +45,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('Home')),
-        body: ListView.builder(
-          itemCount: nowPlayingMovies.length,
-          itemBuilder: (context, index) {
-            final movie = nowPlayingMovies[index];
-            return ListTile(title: Text(movie.title));
-          },
+        body: Column(
+          children: [
+            AppBarWidget(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: nowPlayingMovies.length,
+                itemBuilder: (context, index) {
+                  final movie = nowPlayingMovies[index];
+                  return ListTile(title: Text(movie.title));
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
