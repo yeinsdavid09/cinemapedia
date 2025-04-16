@@ -35,5 +35,12 @@ export './models/the_movie_db/themoviedb.model.dart';
 
 export './providers/movies.provider.dart';
 export './providers/movies_repository.provider.dart';
+export './providers/movies_slider.provider.dart';
+
+//#endregion
+
+//#region ----------------------------------- Widgets ---------------------------------
+
+export './widgets/movies_slider.widget.dart';
 
 //#endregion

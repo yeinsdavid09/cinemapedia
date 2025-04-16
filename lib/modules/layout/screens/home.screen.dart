@@ -1,7 +1,11 @@
-import 'package:cinemapedia/modules/layout/widgets/app_bar.widget.dart';
-import 'package:cinemapedia/modules/movies/providers/movies.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+//* Widgets
+import '../widgets/app_bar.widget.dart';
+
+//* Movies
+import 'package:cinemapedia/modules/movies/index.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   //#region ----------------------------------- Variables ---------------------------------
@@ -37,7 +41,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     //#region ----------------------------------- Variables ---------------------------------
 
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(moviesSliderProvider);
 
     //#endregion
 
@@ -48,15 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         body: Column(
           children: [
             AppBarWidget(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: nowPlayingMovies.length,
-                itemBuilder: (context, index) {
-                  final movie = nowPlayingMovies[index];
-                  return ListTile(title: Text(movie.title));
-                },
-              ),
-            ),
+            MoviesSliderWidget(movies: nowPlayingMovies),
           ],
         ),
       ),
