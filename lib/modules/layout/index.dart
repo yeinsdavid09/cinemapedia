@@ -7,5 +7,6 @@ export './screens/home.screen.dart';
 //#region --------------------------------- Widgets ---------------------------------
 
 export './widgets/app_bar.widget.dart';
+export './widgets/app_navigation_bar.widget.dart';
 
 //#endregion
