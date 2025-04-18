@@ -9,5 +9,5 @@ import './movies.provider.dart';
 final moviesSliderProvider = Provider<List<Movie>>((ref) {
   final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
   if (nowPlayingMovies.isEmpty) return [];
-  return nowPlayingMovies.sublist(0, (nowPlayingMovies.length / 2).toInt());
+  return nowPlayingMovies.sublist(0, 10);
 });

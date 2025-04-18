@@ -42,5 +42,6 @@ export './providers/movies_slider.provider.dart';
 //#region ----------------------------------- Widgets ---------------------------------
 
 export './widgets/movies_slider.widget.dart';
+export './widgets/movies_horizontal_list.widget.dart';
 
 //#endregion

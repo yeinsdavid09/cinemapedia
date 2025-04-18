@@ -22,7 +22,7 @@ class MoviesMapper {
       popularity: movie.popularity,
       posterPath:
           movie.posterPath != ''
-              ? 'https://image.tmdb.org/t/p/w500/${movie.posterPath}'
+              ? 'https://image.tmdb.org/t/p/w500${movie.posterPath}'
               : 'not-found',
       releaseDate: movie.releaseDate,
       title: movie.title,

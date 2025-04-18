@@ -90,6 +90,7 @@ class _Movie extends StatelessWidget {
     //#endregion
 
     //#region --------------------------------- Return ---------------------------------
+
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
       child: DecoratedBox(
