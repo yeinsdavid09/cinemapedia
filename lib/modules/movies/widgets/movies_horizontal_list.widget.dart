@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:go_router/go_router.dart';
 
 //* Configs
 import 'package:cinemapedia/config/index.dart';
@@ -82,7 +83,11 @@ class _MoviesHorizontalListWidgetState
                 physics: BouncingScrollPhysics(),
                 itemCount: widget.movies.length,
                 itemBuilder: (contex, index) {
-                  return _Movie(movie: widget.movies[index]);
+                  final movie = widget.movies[index];
+                  return GestureDetector(
+                    onTap: () => context.push('/movie/${movie.id}'),
+                    child: _Movie(movie: movie),
+                  );
                 },
               ),
             ),

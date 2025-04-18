@@ -1,11 +1,11 @@
 //* Repository
-import 'package:cinemapedia/modules/movies/domain/movies.repository.dart';
+import '../domain/movies.repository.dart';
 
 //* Datasource
-import 'package:cinemapedia/modules/movies/domain/movies.datasource.dart';
+import '../domain/movies.datasource.dart';
 
 //* Entities
-import 'package:cinemapedia/modules/movies/domain/movies.entity.dart';
+import '../domain/movies.entity.dart';
 
 class MoviesRepositoryImpl implements MoviesRepository {
   //#region ----------------------------------- Variables ---------------------------------
@@ -40,6 +40,11 @@ class MoviesRepositoryImpl implements MoviesRepository {
   @override
   Future<List<Movie>> getUpcoming({int page = 1}) {
     return datasource.getUpcoming(page: page);
+  }
+
+  @override
+  Future<Movie> getMovieById({required String id}) {
+    return datasource.getMovieById(id: id);
   }
 
   //#endregion

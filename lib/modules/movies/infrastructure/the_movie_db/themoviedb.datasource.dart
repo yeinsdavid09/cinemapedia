@@ -4,16 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Datasources
-import 'package:cinemapedia/modules/movies/domain/movies.datasource.dart';
+import '../../domain/movies.datasource.dart';
 
 //* Entities
-import 'package:cinemapedia/modules/movies/domain/movies.entity.dart';
+import '../../domain/movies.entity.dart';
 
 //* Models
-import 'package:cinemapedia/modules/movies/models/the_movie_db/themoviedb.model.dart';
+import '../../models/the_movie_db/themoviedb.model.dart';
+import '../../models/the_movie_db/movie_details.model.dart';
 
 //* Mappers
-import 'package:cinemapedia/modules/movies/mappers/movies.mapper.dart';
+import '../../mappers/movies.mapper.dart';
 
 class TheMovieDBDatasource implements MoviesDatasource {
   //#region ----------------------------------- Variables ---------------------------------
@@ -66,6 +67,14 @@ class TheMovieDBDatasource implements MoviesDatasource {
       queryParameters: {'page': page},
     );
     return _mappingMovies(response.data);
+  }
+
+  @override
+  Future<Movie> getMovieById({required String id}) async {
+    final response = await dio.get('/movie/$id');
+    if (response.statusCode != 200) throw Exception('Movie $id not found');
+    final movie = TheMovieDBDetails.fromJson(response.data);
+    return MoviesMapper.movieFromMovieDetailsToMovie(movie);
   }
 
   List<Movie> _mappingMovies(Map<String, dynamic> json) {

@@ -28,6 +28,7 @@ export './mappers/movies.mapper.dart';
 
 export './models/the_movie_db/movie_from_themoviedb.model.dart';
 export './models/the_movie_db/themoviedb.model.dart';
+export './models/the_movie_db/movie_details.model.dart';
 
 //#endregion
 
@@ -36,6 +37,12 @@ export './models/the_movie_db/themoviedb.model.dart';
 export './providers/movies.provider.dart';
 export './providers/movies_repository.provider.dart';
 export './providers/movies_slider.provider.dart';
+
+//#endregion
+
+//#region ----------------------------------- Screens ---------------------------------
+
+export './screens/movie.screen.dart';
 
 //#endregion
 
