@@ -1,3 +1,9 @@
+//#region --------------------------------- Providers ---------------------------------
+
+export './providers/initial_loading.provider.dart';
+
+//#endregion
+
 //#region --------------------------------- Screens ---------------------------------
 
 export './screens/home.screen.dart';
@@ -8,5 +14,6 @@ export './screens/home.screen.dart';
 
 export './widgets/app_bar.widget.dart';
 export './widgets/app_navigation_bar.widget.dart';
+export './widgets/app_loader.widget.dart';
 
 //#endregion
