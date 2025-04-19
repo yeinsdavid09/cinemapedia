@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //* Entities
-import 'package:cinemapedia/modules/movies/domain/movies.entity.dart';
+import '../domain/movies.entity.dart';
 
 //* Providers
-import 'package:cinemapedia/modules/movies/providers/movies_repository.provider.dart';
+import '../providers/movies_repository.provider.dart';
 
 final nowPlayingMoviesProvider = StateNotifierProvider((ref) {
   final movieCallBack = ref.watch(moviesRepositoryProvider).getNowPlaying;

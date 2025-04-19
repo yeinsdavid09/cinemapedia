@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Entities
-import 'package:cinemapedia/modules/movies/index.dart';
+import '../domain/movies.entity.dart';
 
 class MoviesHorizontalListWidget extends StatefulWidget {
   //#region ----------------------------------- Variables ---------------------------------

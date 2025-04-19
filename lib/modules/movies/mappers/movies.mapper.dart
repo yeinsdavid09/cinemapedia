@@ -2,13 +2,13 @@
 import '../domain/movies.entity.dart';
 
 //* Models
-import '../models/the_movie_db/movie_from_themoviedb.model.dart';
-import '../models/the_movie_db/movie_details.model.dart';
+import '../datasources/the_movie_db/models/movie.model.dart';
+import '../datasources/the_movie_db/models/details.model.dart';
 
 class MoviesMapper {
   //#region --------------------------------- Methods ---------------------------------
 
-  static Movie movieFromTheMovieDbToMovie(MovieFromTheMovieDB movie) {
+  static Movie movieFromTheMovieDbToMovie(MovieResponse movie) {
     return Movie(
       adult: movie.adult,
       backdropPath:
@@ -33,7 +33,7 @@ class MoviesMapper {
     );
   }
 
-  static Movie movieFromMovieDetailsToMovie(TheMovieDBDetails movie) {
+  static Movie detailsFromTheMovieDbToMovie(DetailsResponse movie) {
     return Movie(
       adult: movie.adult,
       backdropPath:

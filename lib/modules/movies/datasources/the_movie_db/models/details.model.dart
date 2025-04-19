@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class TheMovieDBDetails {
+class DetailsResponse {
   //#region ----------------------------------- Variables ---------------------------------
 
   final bool adult;
@@ -34,7 +34,7 @@ class TheMovieDBDetails {
 
   //#region --------------------------------- Hooks ---------------------------------
 
-  TheMovieDBDetails({
+  DetailsResponse({
     required this.adult,
     required this.backdropPath,
     required this.belongsToCollection,
@@ -67,14 +67,14 @@ class TheMovieDBDetails {
 
   //#region --------------------------------- Methods ---------------------------------
 
-  factory TheMovieDBDetails.fromRawJson(String str) =>
-      TheMovieDBDetails.fromJson(json.decode(str));
+  factory DetailsResponse.fromRawJson(String str) =>
+      DetailsResponse.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TheMovieDBDetails.fromJson(
+  factory DetailsResponse.fromJson(
     Map<String, dynamic> json,
-  ) => TheMovieDBDetails(
+  ) => DetailsResponse(
     adult: json["adult"],
     backdropPath: json["backdrop_path"] ?? '',
     belongsToCollection:

@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 //* Models
-import 'package:cinemapedia/modules/movies/models/the_movie_db/movie_from_themoviedb.model.dart';
+import 'movie.model.dart';
 
-class TheMovieDBResponse {
+class MoviesResponse {
   //#region ----------------------------------- Variables ---------------------------------
 
   final Dates? dates;
   final int page;
-  final List<MovieFromTheMovieDB> results;
+  final List<MovieResponse> results;
   final int totalPages;
   final int totalResults;
 
@@ -16,7 +16,7 @@ class TheMovieDBResponse {
 
   //#region --------------------------------- Hooks ---------------------------------
 
-  TheMovieDBResponse({
+  MoviesResponse({
     required this.page,
     required this.results,
     required this.totalPages,
@@ -28,21 +28,20 @@ class TheMovieDBResponse {
 
   //#region --------------------------------- Methods ---------------------------------
 
-  factory TheMovieDBResponse.fromRawJson(String str) =>
-      TheMovieDBResponse.fromJson(json.decode(str));
+  factory MoviesResponse.fromRawJson(String str) =>
+      MoviesResponse.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TheMovieDBResponse.fromJson(Map<String, dynamic> json) =>
-      TheMovieDBResponse(
-        dates: json["dates"] != null ? Dates.fromJson(json["dates"]) : null,
-        page: json["page"],
-        results: List<MovieFromTheMovieDB>.from(
-          json["results"].map((x) => MovieFromTheMovieDB.fromJson(x)),
-        ),
-        totalPages: json["total_pages"],
-        totalResults: json["total_results"],
-      );
+  factory MoviesResponse.fromJson(Map<String, dynamic> json) => MoviesResponse(
+    dates: json["dates"] != null ? Dates.fromJson(json["dates"]) : null,
+    page: json["page"],
+    results: List<MovieResponse>.from(
+      json["results"].map((x) => MovieResponse.fromJson(x)),
+    ),
+    totalPages: json["total_pages"],
+    totalResults: json["total_results"],
+  );
 
   Map<String, dynamic> toJson() => {
     "dates": dates?.toJson(),

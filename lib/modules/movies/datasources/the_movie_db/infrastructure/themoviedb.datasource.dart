@@ -4,17 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Datasources
-import '../../domain/movies.datasource.dart';
+import '../../../domain/movies.datasource.dart';
 
 //* Entities
-import '../../domain/movies.entity.dart';
+import '../../../domain/movies.entity.dart';
 
 //* Models
-import '../../models/the_movie_db/themoviedb.model.dart';
-import '../../models/the_movie_db/movie_details.model.dart';
+import '../models/movies.model.dart';
+import '../models/details.model.dart';
 
 //* Mappers
-import '../../mappers/movies.mapper.dart';
+import '../../../mappers/movies.mapper.dart';
 
 class TheMovieDBDatasource implements MoviesDatasource {
   //#region ----------------------------------- Variables ---------------------------------
@@ -73,12 +73,12 @@ class TheMovieDBDatasource implements MoviesDatasource {
   Future<Movie> getMovieById({required String id}) async {
     final response = await dio.get('/movie/$id');
     if (response.statusCode != 200) throw Exception('Movie $id not found');
-    final movie = TheMovieDBDetails.fromJson(response.data);
-    return MoviesMapper.movieFromMovieDetailsToMovie(movie);
+    final movie = DetailsResponse.fromJson(response.data);
+    return MoviesMapper.detailsFromTheMovieDbToMovie(movie);
   }
 
   List<Movie> _mappingMovies(Map<String, dynamic> json) {
-    final theMovieDBResponse = TheMovieDBResponse.fromJson(json);
+    final theMovieDBResponse = MoviesResponse.fromJson(json);
     List<Movie> movies =
         theMovieDBResponse.results
             .where((e) => e.posterPath != 'not-found')

@@ -1,5 +1,5 @@
 //* Entities
-import 'package:cinemapedia/modules/movies/domain/movies.entity.dart';
+import './movies.entity.dart';
 
 abstract class MoviesDatasource {
   //#region --------------------------------- Methods ---------------------------------

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class MovieFromTheMovieDB {
+class MovieResponse {
   //#region ----------------------------------- Variables ---------------------------------
 
   final bool adult;
@@ -22,7 +22,7 @@ class MovieFromTheMovieDB {
 
   //#region --------------------------------- Hooks ---------------------------------
 
-  MovieFromTheMovieDB({
+  MovieResponse({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -43,28 +43,27 @@ class MovieFromTheMovieDB {
 
   //#region --------------------------------- Methods ---------------------------------
 
-  factory MovieFromTheMovieDB.fromRawJson(String str) =>
-      MovieFromTheMovieDB.fromJson(json.decode(str));
+  factory MovieResponse.fromRawJson(String str) =>
+      MovieResponse.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory MovieFromTheMovieDB.fromJson(Map<String, dynamic> json) =>
-      MovieFromTheMovieDB(
-        adult: json["adult"] ?? false,
-        backdropPath: json["backdrop_path"] ?? '',
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
-        id: json["id"],
-        originalLanguage: json["original_language"],
-        originalTitle: json["original_title"],
-        overview: json["overview"] ?? '',
-        popularity: json["popularity"]?.toDouble(),
-        posterPath: json["poster_path"] ?? '',
-        releaseDate: DateTime.parse(json["release_date"]),
-        title: json["title"],
-        video: json["video"],
-        voteAverage: json["vote_average"]?.toDouble(),
-        voteCount: json["vote_count"],
-      );
+  factory MovieResponse.fromJson(Map<String, dynamic> json) => MovieResponse(
+    adult: json["adult"] ?? false,
+    backdropPath: json["backdrop_path"] ?? '',
+    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+    id: json["id"],
+    originalLanguage: json["original_language"],
+    originalTitle: json["original_title"],
+    overview: json["overview"] ?? '',
+    popularity: json["popularity"]?.toDouble(),
+    posterPath: json["poster_path"] ?? '',
+    releaseDate: DateTime.parse(json["release_date"]),
+    title: json["title"],
+    video: json["video"],
+    voteAverage: json["vote_average"]?.toDouble(),
+    voteCount: json["vote_count"],
+  );
 
   Map<String, dynamic> toJson() => {
     "adult": adult,

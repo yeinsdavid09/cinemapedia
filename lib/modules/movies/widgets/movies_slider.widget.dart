@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 //* Entities
-import 'package:cinemapedia/modules/movies/domain/movies.entity.dart';
+import '../domain/movies.entity.dart';
 
 class MoviesSliderWidget extends StatelessWidget {
   //#region ----------------------------------- Variables ---------------------------------
@@ -27,7 +27,9 @@ class MoviesSliderWidget extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     //#endregion
+
     //#region ----------------------------------- Return ---------------------------------
+
     return SizedBox(
       height: 250,
       width: double.infinity,
