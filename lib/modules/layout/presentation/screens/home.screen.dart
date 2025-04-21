@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //* Providers
-import '../providers/initial_loading.provider.dart';
+import '../../providers/initial_loading.provider.dart';
 
 //* Widgets
 import '../widgets/app_bar.widget.dart';
