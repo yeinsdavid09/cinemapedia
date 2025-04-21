@@ -1,12 +1,18 @@
-import 'package:cinemapedia/config/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:animate_do/animate_do.dart';
+
+//* Config
+import 'package:cinemapedia/config/index.dart';
 
 //* Entities
 import '../domain/movies.entity.dart';
 
 //* Providers
 import '../providers/movie_details.providers.dart';
+
+//* Actors
+import 'package:cinemapedia/modules/actors/index.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   //#region ----------------------------------- Variables ---------------------------------
@@ -40,6 +46,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   void initState() {
     super.initState();
     ref.read(movieDetailsProvider.notifier).getMovieById(widget.id);
+    ref.read(actorsProvider.notifier).getActorsByMovieId(widget.id);
   }
 
   //#endregion
@@ -99,6 +106,7 @@ class _AppBar extends StatelessWidget {
 
     return SliverAppBar(
       expandedHeight: size.height * 0.7,
+      collapsedHeight: size.height * 0.2,
       backgroundColor: Colors.black,
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
@@ -111,7 +119,14 @@ class _AppBar extends StatelessWidget {
         background: Stack(
           children: [
             SizedBox.expand(
-              child: Image.network(movie.posterPath, fit: BoxFit.cover),
+              child: Image.network(
+                movie.posterPath,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress != null) return SizedBox();
+                  return FadeIn(child: child);
+                },
+              ),
             ),
             _MovieBackground(
               begin: Alignment.topCenter,
@@ -210,12 +225,13 @@ class _MovieDetails extends StatelessWidget {
           child: Column(
             spacing: 10,
             children: [
-              Text(movie.overview, style: texts.bodyLarge),
+              Text(movie.overview ?? '', style: texts.bodyLarge),
               _MovieRate(
                 rate: movie.voteAverage.toString(),
                 popularity: movie.popularity,
               ),
               _MovieGenres(genres: movie.genreIds),
+              _MovieActors(movieId: movie.id.toString()),
             ],
           ),
         );
@@ -308,6 +324,172 @@ class _MovieGenres extends StatelessWidget {
             );
           }),
         ],
+      ),
+    );
+  }
+
+  //#endregion
+}
+
+class _MovieActors extends ConsumerWidget {
+  //#region ----------------------------------- Variables ---------------------------------
+
+  final String movieId;
+
+  //#endregion
+
+  //#region --------------------------------- Hooks ---------------------------------
+
+  const _MovieActors({required this.movieId});
+
+  //#endregion
+
+  //#region --------------------------------- Methods ---------------------------------
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    //#region ----------------------------------- Variables ---------------------------------
+
+    final actors = ref.watch(actorsProvider);
+
+    //#endregion
+
+    //#region --------------------------------- Return ---------------------------------
+
+    return SizedBox(
+      height: 350,
+      child:
+          actors[movieId] == null
+              ? Center(child: CircularProgressIndicator())
+              : FadeInRight(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: actors[movieId]!.length,
+                  itemBuilder: (contex, index) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: _MovieActor(actor: actors[movieId]![index]),
+                    );
+                  },
+                ),
+              ),
+    );
+
+    //#endregion
+  }
+
+  //#endregion
+}
+
+class _MovieActor extends StatelessWidget {
+  //#region ----------------------------------- Variables ---------------------------------
+
+  final Actor actor;
+
+  //#endregion
+
+  //#region --------------------------------- Hooks ---------------------------------
+
+  const _MovieActor({required this.actor});
+
+  //#endregion
+
+  //#region --------------------------------- Methods ---------------------------------
+
+  @override
+  Widget build(BuildContext context) {
+    //#region ----------------------------------- Variables ---------------------------------
+
+    final texts = Theme.of(context).textTheme;
+
+    //#endregion
+
+    //#region --------------------------------- Return ---------------------------------
+
+    return Container(
+      width: 100,
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _ActorImage(image: actor.profilePath),
+          SizedBox(height: 3),
+          Text(
+            actor.name,
+            style: texts.bodySmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            actor.character ?? '',
+            style: texts.titleSmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+
+    //#endregion
+  }
+
+  //#endregion
+}
+
+class _ActorImage extends StatelessWidget {
+  //#region ----------------------------------- Variables ---------------------------------
+
+  final String image;
+
+  //#endregion
+
+  //#region --------------------------------- Hooks ---------------------------------
+
+  const _ActorImage({required this.image});
+
+  //#endregion
+
+  //#region --------------------------------- Methods ---------------------------------
+
+  Widget progressIndicator(ColorScheme colors) {
+    return SizedBox(
+      height: 200,
+      width: 150,
+      child: Center(child: CircularProgressIndicator(color: colors.primary)),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //#region ----------------------------------- Variables ---------------------------------
+
+    final colors = Theme.of(context).colorScheme;
+
+    //#endregion
+
+    //#region ----------------------------------- Return ---------------------------------
+
+    return SizedBox(
+      width: 150,
+      height: 150,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          image,
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress != null) {
+              return progressIndicator(colors);
+            }
+            return FadeIn(child: child);
+          },
+          errorBuilder: (context, error, stackTrace) {
+            return FadeIn(child: Placeholder());
+          },
+        ),
       ),
     );
   }
