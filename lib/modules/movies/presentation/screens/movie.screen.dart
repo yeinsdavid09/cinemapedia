@@ -6,10 +6,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Entities
-import '../domain/movies.entity.dart';
+import '../../domain/movies.entity.dart';
 
 //* Providers
-import '../providers/movie_details.providers.dart';
+import '../../providers/movie_details.providers.dart';
 
 //* Actors
 import 'package:cinemapedia/modules/actors/index.dart';

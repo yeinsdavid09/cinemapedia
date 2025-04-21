@@ -32,13 +32,13 @@ export './providers/movies_slider.provider.dart';
 
 //#region ----------------------------------- Screens ---------------------------------
 
-export './screens/movie.screen.dart';
+export 'presentation/screens/movie.screen.dart';
 
 //#endregion
 
 //#region ----------------------------------- Widgets ---------------------------------
 
-export './widgets/movies_slider.widget.dart';
-export './widgets/movies_horizontal_list.widget.dart';
+export 'presentation/widgets/movies_slider.widget.dart';
+export 'presentation/widgets/movies_horizontal_list.widget.dart';
 
 //#endregion
