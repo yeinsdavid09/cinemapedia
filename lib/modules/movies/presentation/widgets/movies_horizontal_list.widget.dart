@@ -191,10 +191,7 @@ class _Movie extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 5),
-          _MovieRate(
-            rate: movie.voteAverage.toString(),
-            popularity: movie.popularity,
-          ),
+          _MovieRate(rate: movie.voteAverage, popularity: movie.popularity),
         ],
       ),
     );
@@ -263,7 +260,7 @@ class _MovieImage extends StatelessWidget {
 class _MovieRate extends StatelessWidget {
   //#region ----------------------------------- Variables ---------------------------------
 
-  final String rate;
+  final double rate;
   final double popularity;
 
   //#endregion
@@ -292,7 +289,7 @@ class _MovieRate extends StatelessWidget {
         children: [
           Icon(Icons.star_half_rounded, color: Colors.yellow.shade800),
           Text(
-            rate,
+            NumbersPipe.formatNumber(rate.toInt(), 1),
             style: texts.bodySmall?.copyWith(color: Colors.yellow.shade800),
           ),
           Spacer(),

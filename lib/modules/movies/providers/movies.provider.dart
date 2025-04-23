@@ -26,14 +26,14 @@ final upcomingMoviesProvider = StateNotifierProvider((ref) {
   return MoviesNotifier(movieCallBack: movieCallBack);
 });
 
-typedef MovieCallBack = Future<List<Movie>> Function({int page});
+typedef _MovieCallBack = Future<List<Movie>> Function({int page});
 
 class MoviesNotifier extends StateNotifier<List<Movie>> {
   //#region ----------------------------------- Variables ---------------------------------
 
   int currentPage = 0;
   bool moviesAreLoading = false;
-  MovieCallBack movieCallBack;
+  _MovieCallBack movieCallBack;
 
   //#endregion
 

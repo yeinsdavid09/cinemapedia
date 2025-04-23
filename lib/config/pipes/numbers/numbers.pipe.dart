@@ -3,9 +3,9 @@ import 'package:intl/intl.dart';
 class NumbersPipe {
   //#region --------------------------------- Methods ---------------------------------
 
-  static String formatNumber(int number) {
+  static String formatNumber(int number, [int decimals = 0]) {
     return NumberFormat.compactCurrency(
-      decimalDigits: 0,
+      decimalDigits: decimals,
       symbol: '',
       locale: 'en',
     ).format(number);

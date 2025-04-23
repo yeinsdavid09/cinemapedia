@@ -14,12 +14,12 @@ class DetailsResponse {
   final List<String> originCountry;
   final String originalLanguage;
   final String originalTitle;
-  final String overview;
+  final String? overview;
   final double popularity;
   final String posterPath;
   final List<ProductionCompany> productionCompanies;
   final List<ProductionCountry> productionCountries;
-  final DateTime releaseDate;
+  final DateTime? releaseDate;
   final int revenue;
   final int runtime;
   final List<SpokenLanguage> spokenLanguages;
@@ -89,7 +89,7 @@ class DetailsResponse {
     originCountry: List<String>.from(json["origin_country"].map((x) => x)),
     originalLanguage: json["original_language"],
     originalTitle: json["original_title"],
-    overview: json["overview"],
+    overview: json["overview"] ?? '',
     popularity: json["popularity"]?.toDouble(),
     posterPath: json["poster_path"] ?? '',
     productionCompanies: List<ProductionCompany>.from(
@@ -98,7 +98,10 @@ class DetailsResponse {
     productionCountries: List<ProductionCountry>.from(
       json["production_countries"].map((x) => ProductionCountry.fromJson(x)),
     ),
-    releaseDate: DateTime.parse(json["release_date"]),
+    releaseDate:
+        json["release_date"] != null
+            ? DateTime.tryParse(json["release_date"])
+            : null,
     revenue: json["revenue"],
     runtime: json["runtime"],
     spokenLanguages: List<SpokenLanguage>.from(
@@ -134,7 +137,9 @@ class DetailsResponse {
       productionCountries.map((x) => x.toJson()),
     ),
     "release_date":
-        "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+        releaseDate != null
+            ? "${releaseDate?.year.toString().padLeft(4, '0')}-${releaseDate?.month.toString().padLeft(2, '0')}-${releaseDate?.day.toString().padLeft(2, '0')}"
+            : null,
     "revenue": revenue,
     "runtime": runtime,
     "spoken_languages": List<dynamic>.from(

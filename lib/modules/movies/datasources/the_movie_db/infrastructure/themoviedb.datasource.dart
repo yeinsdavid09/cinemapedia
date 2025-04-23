@@ -77,6 +77,17 @@ class TheMovieDBDatasource implements MoviesDatasource {
     return MoviesMapper.detailsFromTheMovieDbToMovie(movie);
   }
 
+  @override
+  Future<List<Movie>> getMovieByQuery({required String query}) async {
+    if (query.isEmpty) return [];
+    final response = await dio.get(
+      '/search/movie',
+      queryParameters: {'query': query},
+    );
+    if (response.statusCode != 200) throw Exception('Movie $query not found');
+    return _mappingMovies(response.data);
+  }
+
   List<Movie> _mappingMovies(Map<String, dynamic> json) {
     final theMovieDBResponse = MoviesResponse.fromJson(json);
     List<Movie> movies =

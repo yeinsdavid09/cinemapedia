@@ -44,7 +44,7 @@ class MoviesMapper {
       id: movie.id,
       originalLanguage: movie.originalLanguage,
       originalTitle: movie.originalTitle,
-      overview: movie.overview,
+      overview: movie.overview ?? '',
       popularity: movie.popularity,
       posterPath:
           movie.posterPath != ''

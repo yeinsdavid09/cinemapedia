@@ -47,5 +47,10 @@ class MoviesRepositoryImpl implements MoviesRepository {
     return datasource.getMovieById(id: id);
   }
 
+  @override
+  Future<List<Movie>> getMovieByQuery({required String query}) {
+    return datasource.getMovieByQuery(query: query);
+  }
+
   //#endregion
 }

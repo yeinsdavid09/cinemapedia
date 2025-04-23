@@ -11,12 +11,12 @@ final movieDetailsProvider = StateNotifierProvider((ref) {
   return MovieDetailsNotifier(movieCallBack: movieCallBack);
 });
 
-typedef MovieCallBack = Future<Movie> Function({required String id});
+typedef _MovieCallBack = Future<Movie> Function({required String id});
 
 class MovieDetailsNotifier extends StateNotifier<Map<String, Movie>> {
   //#region ----------------------------------- Variables ---------------------------------
 
-  MovieCallBack movieCallBack;
+  _MovieCallBack movieCallBack;
 
   //#endregion
 

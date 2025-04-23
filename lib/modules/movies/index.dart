@@ -27,18 +27,17 @@ export './mappers/movies.mapper.dart';
 export './providers/movies.provider.dart';
 export './providers/movies_repository.provider.dart';
 export './providers/movies_slider.provider.dart';
+export './providers/movies_search.provider.dart';
 
 //#endregion
 
-//#region ----------------------------------- Screens ---------------------------------
+//#region ----------------------------------- Presentation ---------------------------------
 
 export 'presentation/screens/movie.screen.dart';
 
-//#endregion
-
-//#region ----------------------------------- Widgets ---------------------------------
-
 export 'presentation/widgets/movies_slider.widget.dart';
 export 'presentation/widgets/movies_horizontal_list.widget.dart';
+
+export './presentation/delegates/movies_search.delegate.dart';
 
 //#endregion

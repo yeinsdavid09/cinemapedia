@@ -225,7 +225,7 @@ class _MovieDetails extends StatelessWidget {
           child: Column(
             spacing: 10,
             children: [
-              Text(movie.overview ?? '', style: texts.bodyLarge),
+              Text(movie.overview, style: texts.bodyLarge),
               _MovieRate(
                 rate: movie.voteAverage.toString(),
                 popularity: movie.popularity,
