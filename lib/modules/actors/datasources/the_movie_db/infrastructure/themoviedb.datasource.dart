@@ -1,4 +1,3 @@
-import 'package:cinemapedia/modules/actors/index.dart';
 import 'package:dio/dio.dart';
 
 //* Configs
@@ -11,6 +10,7 @@ import '../../../domain/actors.datasource.dart';
 import '../../../domain/actors.entity.dart';
 
 //* Models
+import '../models/credits.model.dart';
 
 //* Mappers
 import '../../../mappers/actors.mapper.dart';

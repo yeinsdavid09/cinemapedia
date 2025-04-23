@@ -35,7 +35,7 @@ class MovieSearchDelegate extends SearchDelegate<Movie?> {
   void _onQueryChanged({required String query}) {
     loadingStream.add(true);
     if (_timer?.isActive ?? false) _timer!.cancel();
-    _timer = Timer(Duration(milliseconds: 500), () async {
+    _timer = Timer(const Duration(milliseconds: 500), () async {
       final results = await searchCallback(query: query);
       initialData = results;
       searchStream.add(results);
@@ -73,12 +73,12 @@ class MovieSearchDelegate extends SearchDelegate<Movie?> {
         builder: (context, snapshot) {
           if (snapshot.data ?? false) {
             return SpinPerfect(
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               spins: 1,
               infinite: true,
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.refresh_rounded),
+                icon: const Icon(Icons.refresh_rounded),
               ),
             );
           } else {
@@ -86,7 +86,7 @@ class MovieSearchDelegate extends SearchDelegate<Movie?> {
               animate: query.isNotEmpty,
               child: IconButton(
                 onPressed: () => query = '',
-                icon: Icon(Icons.close_rounded),
+                icon: const Icon(Icons.close_rounded),
               ),
             );
           }
@@ -102,7 +102,7 @@ class MovieSearchDelegate extends SearchDelegate<Movie?> {
         _clearStreams();
         close(context, null);
       },
-      icon: Icon(Icons.arrow_back_rounded),
+      icon: const Icon(Icons.arrow_back_rounded),
     );
   }
 
@@ -139,14 +139,14 @@ class _Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         final suggestion = suggestions[index];
         return GestureDetector(
           onTap: () => onSuggestionTap(context, suggestion),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(vertical: 5),
             child: Row(
               spacing: 5,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -203,12 +203,12 @@ class _SuggestionImage extends StatelessWidget {
           fit: BoxFit.cover,
           loadingBuilder: (context, child, loadingProgress) {
             if (loadingProgress != null) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             return FadeIn(child: child);
           },
           errorBuilder: (context, error, stackTrace) {
-            return FadeIn(child: Placeholder());
+            return FadeIn(child: const Placeholder());
           },
         ),
       ),
@@ -313,7 +313,7 @@ class _SuggestionsRate extends StatelessWidget {
             NumbersPipe.formatNumber(rate.toInt(), 1),
             style: texts.bodySmall?.copyWith(color: Colors.yellow.shade800),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             NumbersPipe.formatNumber(popularity.toInt()),
             style: texts.bodySmall,

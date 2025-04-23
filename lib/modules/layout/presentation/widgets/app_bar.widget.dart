@@ -28,15 +28,15 @@ class AppBarWidget extends ConsumerWidget {
     //#region --------------------------------- Return ---------------------------------
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: SizedBox(
         width: double.infinity,
         child: Row(
           children: [
             Icon(Icons.movie_creation_outlined, color: colors.primary),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Text('Cinemapedia', style: texts.titleMedium),
-            Spacer(),
+            const Spacer(),
             IconButton(
               onPressed: () {
                 final searchQuery = ref.read(searchQueryProvider);
@@ -55,7 +55,7 @@ class AppBarWidget extends ConsumerWidget {
                   context.push('/movie/${movie.id}');
                 });
               },
-              icon: Icon(Icons.search_outlined),
+              icon: const Icon(Icons.search_outlined),
             ),
           ],
         ),

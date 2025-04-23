@@ -66,9 +66,9 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
     return Scaffold(
       body:
           movie == null
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : CustomScrollView(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 slivers: [_AppBar(movie: movie), _MovieDetails(movie: movie)],
               ),
     );
@@ -110,10 +110,10 @@ class _AppBar extends StatelessWidget {
       backgroundColor: Colors.black,
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         title: Text(
           movie.title,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           textAlign: TextAlign.start,
         ),
         background: Stack(
@@ -123,18 +123,18 @@ class _AppBar extends StatelessWidget {
                 movie.posterPath,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null) return SizedBox();
+                  if (loadingProgress != null) return const SizedBox();
                   return FadeIn(child: child);
                 },
               ),
             ),
-            _MovieBackground(
+            const _MovieBackground(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [Colors.transparent, Colors.black87],
               stops: [0.8, 1.0],
             ),
-            _MovieBackground(
+            const _MovieBackground(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [Colors.black45, Colors.transparent],
@@ -221,7 +221,7 @@ class _MovieDetails extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             spacing: 10,
             children: [
@@ -279,7 +279,7 @@ class _MovieRate extends StatelessWidget {
             rate,
             style: texts.bodyLarge?.copyWith(color: Colors.yellow.shade800),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             NumbersPipe.formatNumber(popularity.toInt()),
             style: texts.bodyLarge,
@@ -319,7 +319,7 @@ class _MovieGenres extends StatelessWidget {
         children: [
           ...genres.map((e) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 2),
+              margin: const EdgeInsets.symmetric(horizontal: 2),
               child: Chip(label: Text(e)),
             );
           }),
@@ -360,11 +360,11 @@ class _MovieActors extends ConsumerWidget {
       height: 350,
       child:
           actors[movieId] == null
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : FadeInRight(
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   itemCount: actors[movieId]!.length,
                   itemBuilder: (contex, index) {
                     return GestureDetector(
@@ -409,12 +409,12 @@ class _MovieActor extends StatelessWidget {
 
     return Container(
       width: 100,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _ActorImage(image: actor.profilePath),
-          SizedBox(height: 3),
+          const SizedBox(height: 3),
           Text(
             actor.name,
             style: texts.bodySmall,
@@ -487,7 +487,7 @@ class _ActorImage extends StatelessWidget {
             return FadeIn(child: child);
           },
           errorBuilder: (context, error, stackTrace) {
-            return FadeIn(child: Placeholder());
+            return FadeIn(child: const Placeholder());
           },
         ),
       ),

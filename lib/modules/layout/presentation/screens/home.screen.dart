@@ -32,17 +32,17 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
-            SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
+            const SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
-                return _HomeView();
+                return const _HomeView();
               }, childCount: 1),
             ),
           ],
         ),
-        bottomNavigationBar: AppNavigationBarWidget(),
+        bottomNavigationBar: const AppNavigationBarWidget(),
       ),
     );
   }

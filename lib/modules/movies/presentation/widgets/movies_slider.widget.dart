@@ -38,7 +38,7 @@ class MoviesSliderWidget extends StatelessWidget {
         viewportFraction: 0.8,
         autoplay: true,
         pagination: SwiperPagination(
-          margin: EdgeInsets.only(top: 0),
+          margin: const EdgeInsets.only(top: 0),
           builder: DotSwiperPaginationBuilder(
             activeColor: colors.primary,
             color: colors.secondary.withAlpha(50),
@@ -62,7 +62,7 @@ class _Movie extends StatelessWidget {
   final Movie movie;
   BoxDecoration boxDecoration = BoxDecoration(
     borderRadius: BorderRadius.circular(20),
-    boxShadow: [
+    boxShadow: const [
       BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 10)),
     ],
   );
@@ -94,7 +94,7 @@ class _Movie extends StatelessWidget {
     //#region --------------------------------- Return ---------------------------------
 
     return Padding(
-      padding: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 30),
       child: DecoratedBox(
         decoration: boxDecoration,
         child: ClipRRect(

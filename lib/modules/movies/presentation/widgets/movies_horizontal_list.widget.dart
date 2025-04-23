@@ -80,7 +80,7 @@ class _MoviesHorizontalListWidgetState
               child: ListView.builder(
                 controller: horizontalScrollController,
                 scrollDirection: Axis.horizontal,
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: widget.movies.length,
                 itemBuilder: (contex, index) {
                   final movie = widget.movies[index];
@@ -127,17 +127,17 @@ class _Heading extends StatelessWidget {
     //#region --------------------------------- Return ---------------------------------
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: SizedBox(
         width: double.infinity,
         child: Row(
           children: [
             Text(title, style: texts.titleLarge),
-            Spacer(),
+            const Spacer(),
             if (subtitle != null)
               FilledButton.tonal(
                 onPressed: () {},
-                style: ButtonStyle(visualDensity: VisualDensity.compact),
+                style: const ButtonStyle(visualDensity: VisualDensity.compact),
                 child: Text(subtitle!, style: texts.titleMedium),
               ),
           ],
@@ -178,19 +178,19 @@ class _Movie extends StatelessWidget {
 
     return Container(
       width: 150,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _MovieImage(image: movie.posterPath),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             movie.title,
             style: texts.titleSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           _MovieRate(rate: movie.voteAverage, popularity: movie.popularity),
         ],
       ),
@@ -292,7 +292,7 @@ class _MovieRate extends StatelessWidget {
             NumbersPipe.formatNumber(rate.toInt(), 1),
             style: texts.bodySmall?.copyWith(color: Colors.yellow.shade800),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             NumbersPipe.formatNumber(popularity.toInt()),
             style: texts.bodySmall,
