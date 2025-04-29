@@ -15,7 +15,10 @@ class MoviesMapper {
           movie.backdropPath != ''
               ? 'https://image.tmdb.org/t/p/w500/${movie.backdropPath}'
               : 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png',
-      genreIds: movie.genreIds.map((e) => e.toString()).toList(),
+      genreIds:
+          movie.genreIds != null
+              ? movie.genreIds!.map((e) => e.toString()).toList()
+              : [''],
       id: movie.id,
       originalLanguage: movie.originalLanguage,
       originalTitle: movie.originalTitle,

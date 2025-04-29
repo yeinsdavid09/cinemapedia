@@ -1,6 +1,6 @@
 //#region --------------------------------- Theme ---------------------------------
 
-export './theme/widgets/app_colors.theme.dart';
+export './theme/constants/app_colors.theme.dart';
 export './theme/widgets/app.theme.dart';
 
 //#endregion
@@ -8,12 +8,13 @@ export './theme/widgets/app.theme.dart';
 //#region --------------------------------- Router ---------------------------------
 
 export './router/routes/app.routes.dart';
+export './router/constants/tabs.dart';
 
 //#endregion
 
 //#region --------------------------------- Constants ---------------------------------
 
-export './constants/environments/environments.dart';
+export './environments/environments.dart';
 
 //#endregion
 

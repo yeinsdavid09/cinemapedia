@@ -85,7 +85,7 @@ class _MoviesHorizontalListWidgetState
                 itemBuilder: (contex, index) {
                   final movie = widget.movies[index];
                   return GestureDetector(
-                    onTap: () => context.push('/movie/${movie.id}'),
+                    onTap: () => context.push('/app/home/movie/${movie.id}'),
                     child: _Movie(movie: movie),
                   );
                 },

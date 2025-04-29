@@ -5,7 +5,7 @@ class MovieResponse {
 
   final bool adult;
   final String backdropPath;
-  final List<int> genreIds;
+  final List<int>? genreIds;
   final int id;
   final String originalLanguage;
   final String originalTitle;
@@ -51,7 +51,7 @@ class MovieResponse {
   factory MovieResponse.fromJson(Map<String, dynamic> json) => MovieResponse(
     adult: json['adult'] ?? false,
     backdropPath: json['backdrop_path'] ?? '',
-    genreIds: List<int>.from(json['genre_ids'].map((x) => x)),
+    genreIds: List<int>.from(json['genre_ids']?.map((x) => x)),
     id: json['id'],
     originalLanguage: json['original_language'],
     originalTitle: json['original_title'],
@@ -71,7 +71,10 @@ class MovieResponse {
   Map<String, dynamic> toJson() => {
     'adult': adult,
     'backdrop_path': backdropPath,
-    'genre_ids': List<dynamic>.from(genreIds.map((x) => x)),
+    'genre_ids':
+        genreIds != null && genreIds!.isNotEmpty
+            ? List<dynamic>.from(genreIds!.map((x) => x))
+            : null,
     'id': id,
     'original_language': originalLanguage,
     'original_title': originalTitle,

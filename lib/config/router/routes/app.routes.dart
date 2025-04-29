@@ -1,18 +1,19 @@
-import 'package:cinemapedia/modules/movies/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 //* Screens
 import 'package:cinemapedia/modules/layout/index.dart';
+import 'package:cinemapedia/modules/movies/index.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
-      path: '/',
-      name: HomeScreen.routeName,
+      path: '/app/:view',
+      name: LayoutScreen.routeName,
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        final view = state.pathParameters['view'] ?? 'home';
+        return LayoutScreen(currentView: view);
       },
       routes: [
         GoRoute(
@@ -25,5 +26,6 @@ final GoRouter appRouter = GoRouter(
         ),
       ],
     ),
+    GoRoute(path: '/', redirect: (_, __) => '/app/home'),
   ],
 );

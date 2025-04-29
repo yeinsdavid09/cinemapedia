@@ -6,66 +6,54 @@ import '../../providers/initial_loading.provider.dart';
 
 //* Widgets
 import '../widgets/app_bar.widget.dart';
-import '../widgets/app_navigation_bar.widget.dart';
 import '../widgets/app_loader.widget.dart';
 
 //* Movies
 import 'package:cinemapedia/modules/movies/index.dart';
 
-class HomeScreen extends StatelessWidget {
-  //#region ----------------------------------- Variables ---------------------------------
-
-  static const String routeName = 'home_screen';
-
-  //#endregion
-
+class HomeView extends StatelessWidget {
   //#region --------------------------------- Hooks ---------------------------------
 
-  const HomeScreen({super.key});
+  const HomeView({super.key});
 
   //#endregion
 
-  //#region --------------------------------- Methods ---------------------------------
+  //#region ----------------------------------- Methods ---------------------------------
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            const SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return const _HomeView();
-              }, childCount: 1),
-            ),
-          ],
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        const SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return const _HomeSections();
+          }, childCount: 1),
         ),
-        bottomNavigationBar: const AppNavigationBarWidget(),
-      ),
+      ],
     );
   }
 
   //#endregion
 }
 
-class _HomeView extends ConsumerStatefulWidget {
-  //#region --------------------------------- Hooks ---------------------------------
+class _HomeSections extends ConsumerStatefulWidget {
+  //#region ----------------------------------- Hooks ---------------------------------
 
-  const _HomeView();
+  const _HomeSections();
 
   //#endregion
 
-  //#region --------------------------------- Methods ---------------------------------
+  //#region ----------------------------------- Methods ---------------------------------
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _HomeSectionsState createState() => _HomeSectionsState();
 
   //#endregion
 }
 
-class _HomeViewState extends ConsumerState<_HomeView> {
+class _HomeSectionsState extends ConsumerState<_HomeSections> {
   //#region ----------------------------------- Hooks ---------------------------------
 
   @override
@@ -78,9 +66,6 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   }
 
   //#endregion
-
-  //#region ----------------------------------- Methods ---------------------------------
-
   @override
   Widget build(BuildContext context) {
     //#region ----------------------------------- Variables ---------------------------------
@@ -136,6 +121,4 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     //#endregion
   }
-
-  //#endregion
 }
