@@ -1,5 +1,5 @@
 //* Entities
-import '../domain/movies.entity.dart';
+import '../domain/entities/movie.dart';
 
 //* Models
 import '../datasources/the_movie_db/models/movie.model.dart';

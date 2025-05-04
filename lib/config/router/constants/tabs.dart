@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 //* Views
 import 'package:cinemapedia/modules/layout/index.dart';
-import 'package:go_router/go_router.dart';
 
 class RouterConstants {
   //#region --------------------------------- Variables ---------------------------------
@@ -22,7 +22,7 @@ class RouterConstants {
     if (index < 0 || index >= tabs.length) return;
 
     final tab = tabs[index];
-    context.push('/app/$tab');
+    context.go('/app/$tab');
   }
 
   static int indexOfView(String view) {

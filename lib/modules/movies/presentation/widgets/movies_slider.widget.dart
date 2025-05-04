@@ -3,7 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 //* Entities
-import '../../domain/movies.entity.dart';
+import '../../domain/entities/movie.dart';
 
 class MoviesSliderWidget extends StatelessWidget {
   //#region ----------------------------------- Variables ---------------------------------

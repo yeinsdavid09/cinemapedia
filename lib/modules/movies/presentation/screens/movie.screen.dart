@@ -6,10 +6,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Entities
-import '../../domain/movies.entity.dart';
+import '../../domain/entities/movie.dart';
 
 //* Providers
 import '../../providers/movie_details.providers.dart';
+import '../../providers/favorites_movies.provider.dart';
+import '../../providers/is_favorite.provider.dart';
 
 //* Actors
 import 'package:cinemapedia/modules/actors/index.dart';
@@ -79,7 +81,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   //#endregion
 }
 
-class _AppBar extends StatelessWidget {
+class _AppBar extends ConsumerWidget {
   //#region ----------------------------------- Variables ---------------------------------
 
   final Movie movie;
@@ -95,10 +97,11 @@ class _AppBar extends StatelessWidget {
   //#region --------------------------------- Methods ---------------------------------
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     //#region ----------------------------------- Variables ---------------------------------
 
     final size = MediaQuery.of(context).size;
+    final isFavorite = ref.watch(isFavoriteProvider(movie.id));
 
     //#endregion
 
@@ -109,6 +112,25 @@ class _AppBar extends StatelessWidget {
       collapsedHeight: size.height * 0.2,
       backgroundColor: Colors.black,
       foregroundColor: Colors.white,
+      actions: [
+        IconButton(
+          onPressed: () async {
+            await ref
+                .read(favoritesMoviesProvider.notifier)
+                .toggleMovie(movie: movie);
+            ref.invalidate(isFavoriteProvider(movie.id));
+          },
+          icon: isFavorite.when(
+            data: (value) {
+              return value
+                  ? const Icon(Icons.favorite_rounded, color: Colors.red)
+                  : const Icon(Icons.favorite_border_rounded);
+            },
+            loading: () => const Icon(Icons.favorite_border_rounded),
+            error: (_, __) => const Icon(Icons.favorite_border_rounded),
+          ),
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         title: Text(
@@ -131,12 +153,18 @@ class _AppBar extends StatelessWidget {
             const _MovieBackground(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.transparent, Colors.black87],
+              colors: [Colors.transparent, Colors.black54],
               stops: [0.8, 1.0],
             ),
             const _MovieBackground(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
+              colors: [Colors.black45, Colors.transparent],
+              stops: [0.0, 0.3],
+            ),
+            const _MovieBackground(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
               colors: [Colors.black45, Colors.transparent],
               stops: [0.0, 0.3],
             ),

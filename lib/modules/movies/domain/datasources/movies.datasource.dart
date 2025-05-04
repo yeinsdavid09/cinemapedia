@@ -1,5 +1,5 @@
 //* Entities
-import './movies.entity.dart';
+import '../entities/movie.dart';
 
 abstract class MoviesDatasource {
   //#region --------------------------------- Methods ---------------------------------

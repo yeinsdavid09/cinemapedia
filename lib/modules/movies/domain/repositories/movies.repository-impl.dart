@@ -1,11 +1,11 @@
 //* Repository
-import './movies.repository.dart';
+import 'movies.repository.dart';
 
 //* Datasource
-import './movies.datasource.dart';
+import '../datasources/movies.datasource.dart';
 
 //* Entities
-import './movies.entity.dart';
+import '../entities/movie.dart';
 
 class MoviesRepositoryImpl implements MoviesRepository {
   //#region ----------------------------------- Variables ---------------------------------

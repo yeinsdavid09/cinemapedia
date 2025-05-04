@@ -1,5 +1,5 @@
-import 'package:cinemapedia/config/index.dart';
 import 'package:flutter/material.dart';
+import 'package:cinemapedia/config/index.dart';
 
 class AppTheme {
   //#region ----------------------------------- Variables ---------------------------------
@@ -41,7 +41,7 @@ class AppTheme {
       useMaterial3: true,
       colorSchemeSeed: appColors[_color],
       brightness: _brightness,
-      appBarTheme: AppBarTheme(centerTitle: false),
+      appBarTheme: const AppBarTheme(centerTitle: false),
     );
   }
 

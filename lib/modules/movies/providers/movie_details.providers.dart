@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //* Entities
-import '../domain/movies.entity.dart';
+import '../domain/entities/movie.dart';
 
 //* Providers
 import './movies_repository.provider.dart';

@@ -52,7 +52,7 @@ class AppBarWidget extends ConsumerWidget {
                   ),
                 ).then((movie) {
                   if (!context.mounted || movie == null) return;
-                  context.push('/movie/${movie.id}');
+                  context.push('/app/home/movie/${movie.id}');
                 });
               },
               icon: const Icon(Icons.search_outlined),

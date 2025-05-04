@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
 //* Entities
-import '../../domain/movies.entity.dart';
+import '../../domain/entities/movie.dart';
 
 typedef SearchCallback = Future<List<Movie>> Function({required String query});
 

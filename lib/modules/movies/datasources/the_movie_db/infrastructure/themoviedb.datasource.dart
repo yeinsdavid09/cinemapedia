@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:cinemapedia/config/index.dart';
 
 //* Datasources
-import '../../../domain/movies.datasource.dart';
+import '../../../domain/datasources/movies.datasource.dart';
 
 //* Entities
-import '../../../domain/movies.entity.dart';
+import '../../../domain/entities/movie.dart';
 
 //* Models
 import '../models/movies.model.dart';
@@ -26,6 +26,7 @@ class TheMovieDBDatasource implements MoviesDatasource {
         'api_key': Environments.theMovieDbKey,
         'language': 'es-Mx',
       },
+      validateStatus: (status) => status != null && status < 500,
     ),
   );
 

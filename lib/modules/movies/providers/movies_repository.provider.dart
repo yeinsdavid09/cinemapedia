@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //* Repository
-import '../domain/movies.repository-impl.dart';
+import '../domain/repositories/movies.repository-impl.dart';
 
 //* Datasources
 import '../datasources/the_movie_db/infrastructure/themoviedb.datasource.dart';

@@ -35,12 +35,13 @@ class MoviesResponse {
 
   factory MoviesResponse.fromJson(Map<String, dynamic> json) => MoviesResponse(
     dates: json['dates'] != null ? Dates.fromJson(json['dates']) : null,
-    page: json['page'],
-    results: List<MovieResponse>.from(
-      json['results'].map((x) => MovieResponse.fromJson(x)),
-    ),
-    totalPages: json['total_pages'],
-    totalResults: json['total_results'],
+    page: json['page'] ?? 0,
+    results:
+        (json['results'] as List<dynamic>? ?? [])
+            .map((x) => MovieResponse.fromJson(x as Map<String, dynamic>))
+            .toList(),
+    totalPages: json['total_pages'] ?? 0,
+    totalResults: json['total_results'] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {

@@ -22,15 +22,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
+    return const CustomScrollView(
+      physics: BouncingScrollPhysics(),
       slivers: [
-        const SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
-        SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            return const _HomeSections();
-          }, childCount: 1),
-        ),
+        SliverAppBar(floating: true, flexibleSpace: AppBarWidget()),
+        SliverFillRemaining(hasScrollBody: false, child: _HomeSections()),
       ],
     );
   }
