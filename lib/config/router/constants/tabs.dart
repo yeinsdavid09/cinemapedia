@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 //* Views
-import 'package:cinemapedia/modules/layout/index.dart';
+import 'package:cinemapedia/modules/layout/presentation/index.dart';
+import 'package:cinemapedia/modules/favorites/presentation/index.dart';
 
 class RouterConstants {
   //#region --------------------------------- Variables ---------------------------------

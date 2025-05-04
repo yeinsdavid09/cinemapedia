@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 //* Movies
-import 'package:cinemapedia/modules/movies/index.dart';
+import 'package:cinemapedia/modules/movies/domain/index.dart';
+import 'package:cinemapedia/modules/movies/infrastructure/index.dart';
+import 'package:cinemapedia/modules/movies/presentation/index.dart';
 
 class AppBarWidget extends ConsumerWidget {
   //#region --------------------------------- Hooks ---------------------------------

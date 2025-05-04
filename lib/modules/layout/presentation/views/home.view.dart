@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //* Providers
-import '../../providers/initial_loading.provider.dart';
+import '../../infrastructure/index.dart';
+import 'package:cinemapedia/modules/movies/infrastructure/index.dart';
 
 //* Widgets
 import '../widgets/app_bar.widget.dart';
 import '../widgets/app_loader.widget.dart';
-
-//* Movies
-import 'package:cinemapedia/modules/movies/index.dart';
+import 'package:cinemapedia/modules/movies/presentation/index.dart';
 
 class HomeView extends StatelessWidget {
   //#region --------------------------------- Hooks ---------------------------------

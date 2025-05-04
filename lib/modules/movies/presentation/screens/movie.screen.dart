@@ -7,14 +7,12 @@ import 'package:cinemapedia/config/index.dart';
 
 //* Entities
 import '../../domain/entities/movie.dart';
+import 'package:cinemapedia/modules/actors/domain/index.dart';
 
 //* Providers
-import '../../providers/movie_details.providers.dart';
-import '../../providers/favorites_movies.provider.dart';
-import '../../providers/is_favorite.provider.dart';
-
-//* Actors
-import 'package:cinemapedia/modules/actors/index.dart';
+import '../../infrastructure/providers/movie_details.provider.dart';
+import 'package:cinemapedia/modules/actors/infrastructure/index.dart';
+import 'package:cinemapedia/modules/favorites/infrastructure/index.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   //#region ----------------------------------- Variables ---------------------------------
